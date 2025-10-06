@@ -1,0 +1,1 @@
+import{r}from"./iframe-B4X6F_0x.js";function n(){var e=r.useRef(!1),t=r.useCallback(function(){return e.current},[]);return r.useEffect(function(){return e.current=!0,function(){e.current=!1}},[]),t}export{n as u};
