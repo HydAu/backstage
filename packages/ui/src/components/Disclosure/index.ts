@@ -14,4 +14,9 @@
  * limitations under the License.
  */
 
-export { Collapsible } from './Collapsible';
+export { Disclosure, DisclosureButton, DisclosurePanel } from './Disclosure';
+export type {
+  DisclosureProps,
+  DisclosureButtonProps,
+  DisclosurePanelProps,
+} from './types';

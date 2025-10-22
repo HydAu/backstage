@@ -93,13 +93,13 @@ export const components: Page[] = [
     status: 'alpha',
   },
   {
-    title: 'Collapsible',
-    slug: 'collapsible',
+    title: 'Dialog',
+    slug: 'dialog',
     status: 'alpha',
   },
   {
-    title: 'Dialog',
-    slug: 'dialog',
+    title: 'Disclosure',
+    slug: 'disclosure',
     status: 'alpha',
   },
   {

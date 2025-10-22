@@ -97,13 +97,6 @@ export const componentDefinitions = {
       checked: [true, false] as const,
     },
   },
-  Collapsible: {
-    classNames: {
-      root: 'bui-CollapsibleRoot',
-      trigger: 'bui-CollapsibleTrigger',
-      panel: 'bui-CollapsiblePanel',
-    },
-  },
   Container: {
     classNames: {
       root: 'bui-Container',
@@ -118,6 +111,13 @@ export const componentDefinitions = {
       headerTitle: 'bui-DialogHeaderTitle',
       body: 'bui-DialogBody',
       footer: 'bui-DialogFooter',
+    },
+  },
+  Disclosure: {
+    classNames: {
+      root: 'bui-Disclosure',
+      button: 'bui-DisclosureButton',
+      panel: 'bui-DisclosurePanel',
     },
   },
   FieldError: {

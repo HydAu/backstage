@@ -1,0 +1,96 @@
+import { PropsTable } from '@/components/PropsTable';
+import { Snippet } from '@/components/Snippet';
+import { CodeBlock } from '@/components/CodeBlock';
+import { DisclosureSnippet } from '@/snippets/stories-snippets';
+import {
+  disclosurePropDefs,
+  disclosureButtonPropDefs,
+  disclosurePanelPropDefs,
+  disclosureUsageSnippet,
+  disclosureDefaultSnippet,
+  disclosureCustomButtonSnippet,
+  disclosureRenderPropsSnippet,
+  disclosureDefaultExpandedSnippet,
+} from './disclosure.props';
+import { PageTitle } from '@/components/PageTitle';
+import { Theming } from '@/components/Theming';
+import { ChangelogComponent } from '@/components/ChangelogComponent';
+
+<PageTitle
+  title="Disclosure"
+  description="A component that allows you to expand and collapse content."
+/>
+
+<Snippet
+  align="center"
+  py={4}
+  height={240}
+  preview={<DisclosureSnippet story="Default" />}
+  code={disclosureDefaultSnippet}
+/>
+
+## Usage
+
+<CodeBlock code={disclosureUsageSnippet} />
+
+## API reference
+
+### Disclosure
+
+Root container for the disclosure. Renders a `<div>` element.
+
+<PropsTable data={disclosurePropDefs} />
+
+### DisclosureButton
+
+Convenience wrapper around Button for the trigger. Renders a `<button>` element.
+
+<PropsTable data={disclosureButtonPropDefs} />
+
+### DisclosurePanel
+
+Panel with the collapsible content. Renders a `<div>` element.
+
+<PropsTable data={disclosurePanelPropDefs} />
+
+## Examples
+
+### Custom Button
+
+Here's a view when using a custom Button with the `slot` prop.
+
+<Snippet
+  align="center"
+  py={4}
+  height={240}
+  preview={<DisclosureSnippet story="CustomButton" />}
+  code={disclosureCustomButtonSnippet}
+/>
+
+### Render Props
+
+Here's a view when using render props for state-based UI.
+
+<Snippet
+  align="center"
+  py={4}
+  height={280}
+  preview={<DisclosureSnippet story="RenderProps" />}
+  code={disclosureRenderPropsSnippet}
+/>
+
+### Default Expanded
+
+Here's a view when the panel is expanded by default.
+
+<Snippet
+  align="center"
+  py={4}
+  height={280}
+  preview={<DisclosureSnippet story="DefaultExpanded" />}
+  code={disclosureDefaultExpandedSnippet}
+/>
+
+<Theming component="Disclosure" />
+
+<ChangelogComponent component="disclosure" />

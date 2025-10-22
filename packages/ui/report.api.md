@@ -6,12 +6,13 @@
 import { Avatar as Avatar_2 } from '@base-ui-components/react/avatar';
 import { ButtonProps as ButtonProps_2 } from 'react-aria-components';
 import { CellProps as CellProps_2 } from 'react-aria-components';
-import { Collapsible as Collapsible_2 } from '@base-ui-components/react/collapsible';
 import { ColumnProps as ColumnProps_2 } from 'react-aria-components';
 import { ComponentProps } from 'react';
 import type { ComponentPropsWithRef } from 'react';
 import { DetailedHTMLProps } from 'react';
 import type { DialogTriggerProps as DialogTriggerProps_2 } from 'react-aria-components';
+import type { DisclosurePanelProps as DisclosurePanelProps_2 } from 'react-aria-components';
+import type { DisclosureProps as DisclosureProps_2 } from 'react-aria-components';
 import type { ElementType } from 'react';
 import { ForwardRefExoticComponent } from 'react';
 import type { HeadingProps } from 'react-aria-components';
@@ -300,25 +301,6 @@ export interface CheckboxProps {
 // @public
 export type ClassNamesMap = Record<string, string>;
 
-// @public
-export const Collapsible: {
-  Root: ForwardRefExoticComponent<
-    Omit<Collapsible_2.Root.Props & RefAttributes<HTMLDivElement>, 'ref'> &
-      RefAttributes<HTMLDivElement>
-  >;
-  Trigger: ForwardRefExoticComponent<
-    Omit<
-      Collapsible_2.Trigger.Props & RefAttributes<HTMLButtonElement>,
-      'ref'
-    > &
-      RefAttributes<HTMLButtonElement>
-  >;
-  Panel: ForwardRefExoticComponent<
-    Omit<Collapsible_2.Panel.Props & RefAttributes<HTMLButtonElement>, 'ref'> &
-      RefAttributes<HTMLButtonElement>
-  >;
-};
-
 // @public (undocumented)
 export const Column: (props: ColumnProps) => JSX_2.Element;
 
@@ -439,13 +421,6 @@ export const componentDefinitions: {
       readonly checked: readonly [true, false];
     };
   };
-  readonly Collapsible: {
-    readonly classNames: {
-      readonly root: 'bui-CollapsibleRoot';
-      readonly trigger: 'bui-CollapsibleTrigger';
-      readonly panel: 'bui-CollapsiblePanel';
-    };
-  };
   readonly Container: {
     readonly classNames: {
       readonly root: 'bui-Container';
@@ -460,6 +435,13 @@ export const componentDefinitions: {
       readonly headerTitle: 'bui-DialogHeaderTitle';
       readonly body: 'bui-DialogBody';
       readonly footer: 'bui-DialogFooter';
+    };
+  };
+  readonly Disclosure: {
+    readonly classNames: {
+      readonly root: 'bui-Disclosure';
+      readonly button: 'bui-DisclosureButton';
+      readonly panel: 'bui-DisclosurePanel';
     };
   };
   readonly FieldError: {
@@ -835,6 +817,41 @@ export const DialogTrigger: (props: DialogTriggerProps) => JSX_2.Element;
 
 // @public
 export interface DialogTriggerProps extends DialogTriggerProps_2 {}
+
+// @public (undocumented)
+export const Disclosure: ForwardRefExoticComponent<
+  DisclosureProps & RefAttributes<HTMLDivElement>
+>;
+
+// @public (undocumented)
+export const DisclosureButton: ForwardRefExoticComponent<
+  DisclosureButtonProps & RefAttributes<HTMLButtonElement>
+>;
+
+// @public
+export interface DisclosureButtonProps extends ButtonProps_2 {
+  // (undocumented)
+  children?: React.ReactNode;
+  // (undocumented)
+  className?: string;
+}
+
+// @public (undocumented)
+export const DisclosurePanel: ForwardRefExoticComponent<
+  DisclosurePanelProps & RefAttributes<HTMLDivElement>
+>;
+
+// @public
+export interface DisclosurePanelProps extends DisclosurePanelProps_2 {
+  // (undocumented)
+  className?: string;
+}
+
+// @public
+export interface DisclosureProps extends DisclosureProps_2 {
+  // (undocumented)
+  className?: string;
+}
 
 // @public (undocumented)
 export type Display = 'none' | 'flex' | 'block' | 'inline';
