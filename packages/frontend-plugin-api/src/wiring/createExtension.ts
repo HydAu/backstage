@@ -113,10 +113,41 @@ export type VerifyExtensionFactoryOutput<
       >}`
   : never;
 
-/** @public */
-export type ExtensionAttachToSpec =
+/**
+ * Specifies where an extension should attach in the extension tree.
+ *
+ * @remarks
+ *
+ * There are two forms of attachment specifications:
+ *
+ * 1. **Full ID form**: Use `id` to reference a specific extension by its full ID.
+ * 2. **Plugin-relative form**: Use `kind` and/or `name` to reference an extension
+ *    within the same plugin. This is resolved to the full ID at build time.
+ *
+ * The plugin-relative form is useful for creating reusable blueprints that
+ * reference other extensions within the same plugin without knowing the plugin ID.
+ *
+ * @example
+ * ```ts
+ * // Attach to a specific extension by full ID
+ * { id: 'app/routes', input: 'routes' }
+ *
+ * // Attach to an extension in the same plugin by name
+ * { name: 'mainPage', input: 'subPages' }
+ *
+ * // Attach to an extension in the same plugin by kind and name
+ * { kind: 'page', name: 'mainPage', input: 'subPages' }
+ * ```
+ *
+ * @public
+ */
+export type ExtensionDefinitionAttachTo =
   | { id: string; input: string }
-  | Array<{ id: string; input: string }>;
+  | { kind: string; name?: string; input: string }
+  | Array<
+      | { id: string; input: string }
+      | { kind: string; name?: string; input: string }
+    >;
 
 /** @public */
 export type CreateExtensionOptions<
@@ -134,7 +165,7 @@ export type CreateExtensionOptions<
 > = {
   kind?: TKind;
   name?: TName;
-  attachTo: ExtensionAttachToSpec;
+  attachTo: ExtensionDefinitionAttachTo;
   disabled?: boolean;
   inputs?: TInputs;
   output: Array<UOutput>;
@@ -204,7 +235,7 @@ export type ExtensionDefinition<
   >(
     args: Expand<
       {
-        attachTo?: ExtensionAttachToSpec;
+        attachTo?: ExtensionDefinitionAttachTo;
         disabled?: boolean;
         inputs?: TExtraInputs & {
           [KName in keyof T['inputs']]?: `Error: Input '${KName &
@@ -416,12 +447,20 @@ export function createExtension<
       if (options.name) {
         parts.push(`name=${options.name}`);
       }
-      parts.push(
-        `attachTo=${[options.attachTo]
-          .flat()
-          .map(a => `${a.id}@${a.input}`)
-          .join('+')}`,
-      );
+      const attachTo = [options.attachTo]
+        .flat()
+        .map(a => {
+          if ('id' in a) {
+            return `${a.id}@${a.input}`;
+          }
+          let id = `${a.kind}:<plugin>`;
+          if (a.name) {
+            id = `${id}/${a.name}`;
+          }
+          return `${id}@${a.input}`;
+        })
+        .join('+');
+      parts.push(`attachTo=${attachTo}`);
       return `ExtensionDefinition{${parts.join(',')}}`;
     },
     override(overrideOptions) {
